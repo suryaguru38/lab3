@@ -43,3 +43,18 @@ app.get('/hello/:userName', hello.view);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+/*
+* GET home page.
+*/
+
+exports.view = function(req, res){
+  var nameToShow = req.params.userName;
+  if (nameToShow == undefined) {
+    nameToShow = 'World';
+  }
+  console.log('Name is ' + nameToShow);
+  res.render('index', {
+    'name': nameToShow,
+  })
+};
